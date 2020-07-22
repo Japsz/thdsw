@@ -3,6 +3,7 @@ package com.example.demo.controllersImpl;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ public class UserControllerImpl implements UserController {
 
 
 	// http://localhost:8888/users (GET)
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
 	@Override
 	public List<User> getUsers() {
@@ -29,6 +31,7 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/1 (GET)
 	@Override
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Optional<User> getUserById(@PathVariable Long id) {
 		return userService.findUserById(id);
@@ -37,6 +40,7 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/add (ADD)
 	@Override
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/users/add", method = RequestMethod.POST, produces = "application/json")
 	public User addUser(@RequestBody User user) {
 		System.out.println(user.getUsername());
@@ -47,6 +51,7 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/delete/1 (GET)
 	@Override
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/users/delete/{id}", method = RequestMethod.GET, produces = "application/json")
 	public String deleteUser(@PathVariable Long id) {
 		return userService.deleteUser(id);
@@ -55,16 +60,25 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/update (PATCH)
 	@Override
+	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping(value = "/users/update", method = RequestMethod.PATCH, produces = "application/json")
-	public String updateUser(User userNew) {
+	public String updateUser(@RequestBody User userNew) {
 		return userService.updateUser(userNew);
 	}
 
 
-	// http://localhost:8888/test (GET)
-	@RequestMapping(value = "/users/test", method = RequestMethod.GET, produces = "application/json")
+	// http://localhost:8888/auth (GET)
+	@RequestMapping(value = "/users/auth", method = RequestMethod.POST, produces = "application/json")
+	@CrossOrigin(origins = "http://localhost:8081")
 	@Override
-	public String test() {
-		return "Test done";
+	public String authUser(@RequestBody User user) {
+		System.out.println(user.getPassword());
+		System.out.println(user.getUsername());
+		System.out.println(user.getType());
+		User authedUser = userService.authUser(user.getUsername(), user.getPassword());
+		if(authedUser != null) {
+			return "true";
+		}
+		return "false";
 	}
 }

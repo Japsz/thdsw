@@ -20,7 +20,7 @@ public interface UserController {
 
 	public String updateUser(User userNew);
 
+	public String authUser(User authUser);
 
-	public String test();
 }
 
