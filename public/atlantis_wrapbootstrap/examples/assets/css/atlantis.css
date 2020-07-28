@@ -4438,9 +4438,9 @@ label.error {
 /*    Button    */
 .btn {
   padding: .65rem 1.4rem;
-  font-size: 14px;
+  font-size: 10px;
   opacity: 1;
-  border-radius: 3px; }
+  border-radius: 35px; }
   .btn:hover, .btn:focus {
     opacity: 0.9;
     transition: all .3s; }
