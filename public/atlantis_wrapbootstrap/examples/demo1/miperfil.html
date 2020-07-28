@@ -5,7 +5,7 @@
 	<title>Atlantis Bootstrap 4 Admin Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="https://via.placeholder.com/32x32" type="image/x-icon"/>
-
+	
 	<!-- Fonts and icons -->
 	<script src="../assets/js/plugin/webfont/webfont.min.js"></script>
 	<script>
@@ -21,12 +21,11 @@
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../assets/css/atlantis.min.css">
-
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="../assets/css/demo.css">
 </head>
 <body>
-	<div class="wrapper">
+	<div class="wrapper">	
 		<div class="main-header">
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="blue">
@@ -628,443 +627,245 @@
 			</div>
 		</div>
 		<!-- End Sidebar -->
-
 		<div class="main-panel">
 			<div class="content">
-				<div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">Inicio</h2>
-								<h5 class="text-white op-7 mb-2">Bienvenido</h5>
-							</div>
-							<!-- <div class="ml-md-auto py-2 py-md-0">
-								<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-								<a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-							</div> -->
-						</div>
-					</div>
-				</div>
-				<div class="page-inner mt--5">
-					<div class="row mt--2">
-						<div class="col-md-6">
-							<div class="card full-height">
-								<div class="card-body">
-									<div class="card-title">Mis Permisos</div>
-									<div class="card-category">Resumen de permisos solicitados y visados</div>
-									<div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-1"></div>
-											<h6 class="fw-bold mt-3 mb-0">Solicitados</h6>
-										</div>
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-2"></div>
-											<h6 class="fw-bold mt-3 mb-0">Aprobados</h6>
-										</div>
-										<div class="px-2 pb-2 pb-md-0 text-center">
-											<div id="circles-3"></div>
-											<h6 class="fw-bold mt-3 mb-0">Rechazados</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card full-height">
-								<div class="card-body">
-									<div class="card-title">Asistencia Semanal</div>
-									<div class="row py-3">
-										<div class="col-md-4 d-flex flex-column justify-content-around">
-											<div>
-												<h6 class="fw-bold text-uppercase text-success op-8">Horas Trabajadas</h6>
-												<h3 class="fw-bold">30</h3>
-											</div>
-											<div>
-												<h6 class="fw-bold text-uppercase text-danger op-8">Horas Justificadas</h6>
-												<h3 class="fw-bold">10</h3>
-											</div>
-										</div>
-										<div class="col-md-8">
-											<div id="chart-container">
-												<canvas id="totalIncomeChart"></canvas>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- <div class="row">
-						<div class="col-md-8">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-head-row">
-										<div class="card-title">User Statistics</div>
-										<div class="card-tools">
-											<a href="#" class="btn btn-info btn-border btn-round btn-sm mr-2">
-												<span class="btn-label">
-													<i class="fa fa-pencil"></i>
-												</span>
-												Export
-											</a>
-											<a href="#" class="btn btn-info btn-border btn-round btn-sm">
-												<span class="btn-label">
-													<i class="fa fa-print"></i>
-												</span>
-												Print
-											</a>
-										</div>
-									</div>
-								</div>
-								<div class="card-body">
-									<div class="chart-container" style="min-height: 375px">
-										<canvas id="statisticsChart"></canvas>
-									</div>
-									<div id="myChartLegend"></div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card card-primary">
-								<div class="card-header">
-									<div class="card-title">Daily Sales</div>
-									<div class="card-category">March 25 - April 02</div>
-								</div>
-								<div class="card-body pb-0">
-									<div class="mb-4 mt-2">
-										<h1>$4,578.58</h1>
-									</div>
-									<div class="pull-in">
-										<canvas id="dailySalesChart"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-body pb-0">
-									<div class="h1 fw-bold float-right text-warning">+7%</div>
-									<h2 class="mb-2">213</h2>
-									<p class="text-muted">Transactions</p>
-									<div class="pull-in sparkline-fix">
-										<div id="lineChart"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> -->
-					<!-- <div class="row row-card-no-pd">
+				<div class="page-inner">
+					<h4 class="page-title">Mi Perfil</h4>
+					<div class="row">
 						<div class="col-md-12">
-							<div class="card">
+							<div class="card card-with-nav">
 								<div class="card-header">
-									<div class="card-head-row card-tools-still-right">
-										<h4 class="card-title">Users Geolocation</h4>
-										<div class="card-tools">
-											<button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-angle-down"></span></button>
-											<button class="btn btn-icon btn-link btn-primary btn-xs btn-refresh-card"><span class="fa fa-sync-alt"></span></button>
-											<button class="btn btn-icon btn-link btn-primary btn-xs"><span class="fa fa-times"></span></button>
-										</div>
+									<div class="row row-nav-line">
+										<ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+											<li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#personales" role="tab" aria-selected="true">Personales</a> </li>
+											<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#laborales" role="tab" aria-selected="false">Laborales</a> </li>
+											<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#contrasena" role="tab" aria-selected="false">Cambio Contraseña</a> </li>
+										</ul>
+
 									</div>
-									<p class="card-category">
-									Map of the distribution of users around the world</p>
 								</div>
-								<div class="card-body">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="table-responsive table-hover table-sales">
-												<table class="table">
-													<tbody>
-														<tr>
-															<td>
-																<div class="flag">
-																	<img src="https://via.placeholder.com/16x11"
- alt="indonesia">
-																</div>
-															</td>
-															<td>Indonesia</td>
-															<td class="text-right">
-																2.320
-															</td>
-															<td class="text-right">
-																42.18%
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="flag">
-																	<img src="https://via.placeholder.com/16x11"
- alt="united states">
-																</div>
-															</td>
-															<td>USA</td>
-															<td class="text-right">
-																240
-															</td>
-															<td class="text-right">
-																4.36%
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="flag">
-																	<img src="https://via.placeholder.com/16x11"
- alt="australia">
-																</div>
-															</td>
-															<td>Australia</td>
-															<td class="text-right">
-																119
-															</td>
-															<td class="text-right">
-																2.16%
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="flag">
-																	<img src="https://via.placeholder.com/16x11"
- alt="russia">
-																</div>
-															</td>
-															<td>Russia</td>
-															<td class="text-right">
-																1.081
-															</td>
-															<td class="text-right">
-																19.65%
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="flag">
-																	<img src="https://via.placeholder.com/16x11"
- alt="china">
-																</div>
-															</td>
-															<td>China</td>
-															<td class="text-right">
-																1.100
-															</td>
-															<td class="text-right">
-																20%
-															</td>
-														</tr>
-														<tr>
-															<td>
-																<div class="flag">
-																	<img src="https://via.placeholder.com/16x11"
- alt="brazil">
-																</div>
-															</td>
-															<td>Brasil</td>
-															<td class="text-right">
-																640
-															</td>
-															<td class="text-right">
-																11.63%
-															</td>
-														</tr>
-													</tbody>
-												</table>
+								<div class="card-body">	
+									<div class="tab-content mt-3">
+										<div class="tab-pane active" id="personales" role="tabpanel">
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Nombre</label>
+														<input type="text" class="form-control" name="name" placeholder="" value="">
+													</div>
+												</div>
+												
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Apellido Paterno</label>
+														<input type="text" class="form-control" name="name" placeholder="" value="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Apellido Materno</label>
+														<input type="email" class="form-control" name="email" placeholder="" value="">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Rut</label>
+														<input type="text" class="form-control" name="name" placeholder="11.111.111-1" value="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Email</label>
+														<input type="email" class="form-control" name="email" placeholder="hello@priben.com" value="">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-4">
+													<div class="form-group form-group-default">
+														<label>Fecha de Nacimiento</label>
+														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Ingrese fecha">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-group-default">
+														<label>Género</label>
+														<select class="form-control" id="gender">
+															<option>Masculino</option>
+															<option>Femenino</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-group-default">
+														<label>Celular</label>
+														<input type="text" class="form-control" value="" name="phone" placeholder="+56912345678">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Dirección</label>
+														<input type="text" class="form-control" value="" name="address" placeholder="Calle, número y Comuna">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3 mb-1">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>En caso de emergencia contactar a:</label>
+														<textarea class="form-control" name="about" placeholder="Ingrese nombre y número de teléfono" rows="3"></textarea>
+													</div>
+												</div>
+											</div>
+											<div class="text-right mt-3 mb-3">
+												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-danger">Cancelar</button>
 											</div>
 										</div>
-										<div class="col-md-6">
-											<div class="mapcontainer">
-												<div id="map-example" class="vmap"></div>
+
+										<div class="tab-pane" id="laborales" role="tabpanel">
+	              							
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Cargo</label>
+														<input type="text" class="form-control" name="name" placeholder="Ej. Desarrollador" value="">
+													</div>
+												</div>
+												
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Fecha Inicio Contrato</label>
+														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Seleccione fecha">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Fecha Término Contrato</label>
+														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Seleccione fecha">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Unidad</label>
+														<select class="form-control" id="">
+															<option>Administración</option>
+															<option>Informática</option>
+															<option>Comercial</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Tipo Contrato</label>
+														<select class="form-control" id="">
+															<option>Indefinido</option>
+															<option>Plazo fijo</option>
+															<option>Honorarios</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="text-right mt-3 mb-3">
+												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-danger">Cancelar</button>
 											</div>
 										</div>
-									</div>
+										<div class="tab-pane" id="contrasena" role="tabpanel">
+	              							
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Contraseña actual</label>
+														<input type="text" class="form-control" name="name" placeholder="Ingrese datos" value="">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Nueva contraseña</label>
+														<input type="text" class="form-control" name="name" placeholder="Ingrese datos" value="">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Confirme nueva contraseña</label>
+														<input type="text" class="form-control" name="name" placeholder="Ingrese datos" value="">
+													</div>
+												</div>
+												
+											</div>
+											
+											
+											<div class="text-right mt-3 mb-3">
+												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-danger">Cancelar</button>
+											</div>
+										</div>
+									</div>	
 								</div>
 							</div>
 						</div>
-					</div> -->
-					<div class="row">
 						<!-- <div class="col-md-4">
-							<div class="card">
-								<div class="card-header">
-									<div class="card-title">Top Products</div>
-								</div>
-								<div class="card-body pb-0">
-									<div class="d-flex">
-										<div class="avatar">
-											<img src="https://via.placeholder.com/50x50"
- alt="..." class="avatar-img rounded-circle">
-										</div>
-										<div class="flex-1 pt-1 ml-2">
-											<h6 class="fw-bold mb-1">CSS</h6>
-											<small class="text-muted">Cascading Style Sheets</small>
-										</div>
-										<div class="d-flex ml-auto align-items-center">
-											<h3 class="text-info fw-bold">+$17</h3>
+							<div class="card card-profile">
+								<div class="card-header" style="background-image: url('https://via.placeholder.com/325x215')">
+									<div class="profile-picture">
+										<div class="avatar avatar-xl">
+											<img src="https://via.placeholder.com/60x60" alt="..." class="avatar-img rounded-circle">
 										</div>
 									</div>
-									<div class="separator-dashed"></div>
-									<div class="d-flex">
-										<div class="avatar">
-											<img src="https://via.placeholder.com/50x50"
- alt="..." class="avatar-img rounded-circle">
-										</div>
-										<div class="flex-1 pt-1 ml-2">
-											<h6 class="fw-bold mb-1">J.CO Donuts</h6>
-											<small class="text-muted">The Best Donuts</small>
-										</div>
-										<div class="d-flex ml-auto align-items-center">
-											<h3 class="text-info fw-bold">+$300</h3>
-										</div>
-									</div>
-									<div class="separator-dashed"></div>
-									<div class="d-flex">
-										<div class="avatar">
-											<img src="https://via.placeholder.com/50x50"
- alt="..." class="avatar-img rounded-circle">
-										</div>
-										<div class="flex-1 pt-1 ml-2">
-											<h6 class="fw-bold mb-1">Ready Pro</h6>
-											<small class="text-muted">Bootstrap 4 Admin Dashboard</small>
-										</div>
-										<div class="d-flex ml-auto align-items-center">
-											<h3 class="text-info fw-bold">+$350</h3>
-										</div>
-									</div>
-									<div class="separator-dashed"></div>
-									<div class="pull-in">
-										<canvas id="topProductsChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div> -->
-					<!-- 	<div class="col-md-4">
-							<div class="card">
-								<div class="card-body">
-									<div class="card-title fw-mediumbold">Suggested People</div>
-									<div class="card-list">
-										<div class="item-list">
-											<div class="avatar">
-												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
-											</div>
-											<div class="info-user ml-3">
-												<div class="username">Jimmy Denis</div>
-												<div class="status">Graphic Designer</div>
-											</div>
-											<button class="btn btn-icon btn-primary btn-round btn-xs">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div class="item-list">
-											<div class="avatar">
-												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
-											</div>
-											<div class="info-user ml-3">
-												<div class="username">Chad</div>
-												<div class="status">CEO Zeleaf</div>
-											</div>
-											<button class="btn btn-icon btn-primary btn-round btn-xs">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div class="item-list">
-											<div class="avatar">
-												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
-											</div>
-											<div class="info-user ml-3">
-												<div class="username">Talha</div>
-												<div class="status">Front End Designer</div>
-											</div>
-											<button class="btn btn-icon btn-primary btn-round btn-xs">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div class="item-list">
-											<div class="avatar">
-												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
-											</div>
-											<div class="info-user ml-3">
-												<div class="username">John Doe</div>
-												<div class="status">Back End Developer</div>
-											</div>
-											<button class="btn btn-icon btn-primary btn-round btn-xs">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div class="item-list">
-											<div class="avatar">
-												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
-											</div>
-											<div class="info-user ml-3">
-												<div class="username">Talha</div>
-												<div class="status">Front End Designer</div>
-											</div>
-											<button class="btn btn-icon btn-primary btn-round btn-xs">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-										<div class="item-list">
-											<div class="avatar">
-												<img src="https://via.placeholder.com/50x50" alt="..." class="avatar-img rounded-circle">
-											</div>
-											<div class="info-user ml-3">
-												<div class="username">Jimmy Denis</div>
-												<div class="status">Graphic Designer</div>
-											</div>
-											<button class="btn btn-icon btn-primary btn-round btn-xs">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div> -->
-						<!-- <div class="col-md-4">
-							<div class="card card-primary bg-primary-gradient">
-								<div class="card-body">
-									<h4 class="mt-3 b-b1 pb-2 mb-4 fw-bold">Active user right now</h4>
-									<h1 class="mb-4 fw-bold">17</h1>
-									<h4 class="mt-3 b-b1 pb-2 mb-5 fw-bold">Page view per minutes</h4>
-									<div id="activeUsersChart"></div>
-									<h4 class="mt-5 pb-3 mb-0 fw-bold">Top active pages</h4>
-									<ul class="list-unstyled">
-										<li class="d-flex justify-content-between pb-1 pt-1"><small>/product/readypro/index.html</small> <span>7</span></li>
-										<li class="d-flex justify-content-between pb-1 pt-1"><small>/product/atlantis/demo.html</small> <span>10</span></li>
-									</ul>
-								</div>
-							</div>
-						</div> -->
-					</div>
-					<div class="row">
-						<!-- <div class="col-md-6">
-							<div class="card full-height">
-								<div class="card-header">
-									<div class="card-title">Actividad</div>
 								</div>
 								<div class="card-body">
-									<ol class="activity-feed">
-										<li class="feed-item feed-item-secondary">
-											<time class="date" datetime="9-25">Sep 25</time>
-											<span class="text">Solicitud de permiso <a href="#">"Volunteer opportunity"</a></span>
-										</li>
-										<li class="feed-item feed-item-success">
-											<time class="date" datetime="9-24">Sep 24</time>
-											<span class="text">Added an interest <a href="#">"Volunteer Activities"</a></span>
-										</li>
-										<li class="feed-item feed-item-info">
-											<time class="date" datetime="9-23">Sep 23</time>
-											<span class="text">Joined the group <a href="single-group.php">"Boardsmanship Forum"</a></span>
-										</li>
-										<li class="feed-item feed-item-warning">
-											<time class="date" datetime="9-21">Sep 21</time>
-											<span class="text">Responded to need <a href="#">"In-Kind Opportunity"</a></span>
-										</li>
-										<li class="feed-item feed-item-danger">
-											<time class="date" datetime="9-18">Sep 18</time>
-											<span class="text">Created need <a href="#">"Volunteer Opportunity"</a></span>
-										</li>
-										<li class="feed-item">
-											<time class="date" datetime="9-17">Sep 17</time>
-											<span class="text">Attending the event <a href="single-event.php">"Some New Event"</a></span>
-										</li>
-									</ol>
+									<div class="user-profile text-center">
+										<div class="name">Hizrian, 19</div>
+										<div class="job">Frontend Developer</div>
+										<div class="desc">A man who hates loneliness</div>
+										<div class="social-media">
+											<a class="btn btn-info btn-twitter btn-sm btn-link" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
+											</a>
+											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span> 
+											</a>
+											<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span> 
+											</a>
+											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#"> 
+												<span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span> 
+											</a>
+										</div>
+										<div class="view-profile">
+											<a href="#" class="btn btn-secondary btn-block">View Full Profile</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="row user-stats text-center">
+										<div class="col">
+											<div class="number">125</div>
+											<div class="title">Post</div>
+										</div>
+										<div class="col">
+											<div class="number">25K</div>
+											<div class="title">Followers</div>
+										</div>
+										<div class="col">
+											<div class="number">134</div>
+											<div class="title">Following</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div> -->
-					<!-- ThemeKita -->
 					</div>
 				</div>
 			</div>
@@ -1091,11 +892,10 @@
 					</nav> -->
 					<div class="copyright ml-auto">
 						2020, made with <i class="fa fa-heart heart text-danger"></i> by <a href="https://www.themekita.com">PriBen</a>
-					</div>				
+					</div>
 				</div>
 			</footer>
 		</div>
-		
 		<div class="quick-sidebar">
 			<a href="#" class="close-quick-sidebar">
 				<i class="flaticon-cross"></i>
@@ -1427,7 +1227,7 @@
 										<li>
 											<span class="item-label">Enable Notifications</span>
 											<div class="item-control">
-												<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round" data-size>
+												<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
 											</div>
 										</li>
 										<li>
@@ -1566,173 +1366,23 @@
 	<script src="../assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="../assets/js/core/popper.min.js"></script>
 	<script src="../assets/js/core/bootstrap.min.js"></script>
-
 	<!-- jQuery UI -->
 	<script src="../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 	<script src="../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-
-	<!-- jQuery Scrollbar -->
-	<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-
 	<!-- Moment JS -->
-	<script src="../assets/js/plugin/moment/moment.min.js"></script>
-
-	<!-- Chart JS -->
-	<script src="../assets/js/plugin/chart.js/chart.min.js"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
-	<!-- Chart Circle -->
-	<script src="../assets/js/plugin/chart-circle/circles.min.js"></script>
-
-	<!-- Datatables -->
-	<script src="../assets/js/plugin/datatables/datatables.min.js"></script>
-
-	<!-- Bootstrap Notify -->
-	<script src="../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-
+	<script src="../assets/js/plugin/moment/moment.min.js"></script><!-- DateTimePicker -->
+	<script src="../assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
 	<!-- Bootstrap Toggle -->
 	<script src="../assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-
-	<!-- jQuery Vector Maps -->
-	<script src="../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-	<script src="../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
-
-	<!-- Google Maps Plugin -->
-	<script src="../assets/js/plugin/gmaps/gmaps.js"></script>
-
-	<!-- Dropzone -->
-	<script src="../assets/js/plugin/dropzone/dropzone.min.js"></script>
-
-	<!-- Fullcalendar -->
-	<script src="../assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
-
-	<!-- DateTimePicker -->
-	<script src="../assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
-
-	<!-- Bootstrap Tagsinput -->
-	<script src="../assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-
-	<!-- Bootstrap Wizard -->
-	<script src="../assets/js/plugin/bootstrap-wizard/bootstrapwizard.js"></script>
-
-	<!-- jQuery Validation -->
-	<script src="../assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
-
-	<!-- Summernote -->
-	<script src="../assets/js/plugin/summernote/summernote-bs4.min.js"></script>
-
-	<!-- Select2 -->
-	<script src="../assets/js/plugin/select2/select2.full.min.js"></script>
-
-	<!-- Sweet Alert -->
-	<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-	<!-- Owl Carousel -->
-	<script src="../assets/js/plugin/owl-carousel/owl.carousel.min.js"></script>
-
-	<!-- Magnific Popup -->
-	<script src="../assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
-
+	<!-- jQuery Scrollbar -->
+	<script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 	<!-- Atlantis JS -->
 	<script src="../assets/js/atlantis.min.js"></script>
-
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="../assets/js/setting-demo.js"></script>
-	<script src="../assets/js/demo.js"></script>
 	<script>
-		Circles.create({
-			id:'circles-1',
-			radius:45,
-			value:60,
-			maxValue:100,
-			width:7,
-			text: 5,
-			colors:['#f1f1f1', '#FF9E27'],
-			duration:400,
-			wrpClass:'circles-wrp',
-			textClass:'circles-text',
-			styleWrapper:true,
-			styleText:true
-		})
-
-		Circles.create({
-			id:'circles-2',
-			radius:45,
-			value:70,
-			maxValue:100,
-			width:7,
-			text: 36,
-			colors:['#f1f1f1', '#2BB930'],
-			duration:400,
-			wrpClass:'circles-wrp',
-			textClass:'circles-text',
-			styleWrapper:true,
-			styleText:true
-		})
-
-		Circles.create({
-			id:'circles-3',
-			radius:45,
-			value:40,
-			maxValue:100,
-			width:7,
-			text: 12,
-			colors:['#f1f1f1', '#F25961'],
-			duration:400,
-			wrpClass:'circles-wrp',
-			textClass:'circles-text',
-			styleWrapper:true,
-			styleText:true
-		})
-
-		var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-		var mytotalIncomeChart = new Chart(totalIncomeChart, {
-			type: 'bar',
-			data: {
-				labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-				datasets : [{
-					label: "Total Income",
-					backgroundColor: '#ff9e27',
-					borderColor: 'rgb(23, 125, 255)',
-					data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-				}],
-			},
-			options: {
-				responsive: true,
-				maintainAspectRatio: false,
-				legend: {
-					display: false,
-				},
-				scales: {
-					yAxes: [{
-						ticks: {
-							display: false //this will remove only the label
-						},
-						gridLines : {
-							drawBorder: false,
-							display : false
-						}
-					}],
-					xAxes : [ {
-						gridLines : {
-							drawBorder: false,
-							display : false
-						}
-					}]
-				},
-			}
-		});
-
-		$('#lineChart').sparkline([105,103,123,100,95,105,115], {
-			type: 'line',
-			height: '70',
-			width: '100%',
-			lineWidth: '2',
-			lineColor: '#ffa534',
-			fillColor: 'rgba(255, 165, 52, .14)'
+		$('#datepicker').datetimepicker({
+			format: 'MM/DD/YYYY',
 		});
 	</script>
 </body>
