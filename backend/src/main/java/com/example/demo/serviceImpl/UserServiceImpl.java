@@ -50,4 +50,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return "User no existe en la BD";
 	}
+	@Override
+	public User authUser(String username, String password) {
+		List<User> users = userRepository.findByUsernameAndPassword(username, password);
+		if(users.size() > 0) {
+			return users.get(0);
+		}
+		return null;
+	}
 }

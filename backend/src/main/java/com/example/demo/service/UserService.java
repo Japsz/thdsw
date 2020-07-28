@@ -10,5 +10,5 @@ public interface UserService {
 	public User saveUser(User newUser);
 	public String deleteUser(Long id);
 	public String updateUser(User updatedUser);
-	
+	public User authUser(String username, String password);
 }
