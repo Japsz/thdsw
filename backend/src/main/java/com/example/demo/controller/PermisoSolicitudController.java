@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import com.example.demo.entities.PermisoSolicitud;
 import com.example.demo.requests.AddPermisoSolicitud;
+import com.example.demo.requests.FillPermisoSolicitud;
 
 
 public interface PermisoSolicitudController {
@@ -23,6 +24,9 @@ public interface PermisoSolicitudController {
 
 
 	public String test();
+
+
+	PermisoSolicitud fillPermisoSolicitud(Long id, FillPermisoSolicitud solicitud);
 
 }
 

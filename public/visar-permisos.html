@@ -489,22 +489,27 @@
                                                     </div>
                                                     <div class="card-footer">
                                                         <div class="row">
-                                                            <div class="col-sm-6 col-md-6 mb-3 mb-md-0 transfer-to">
-                                                                <h5 class="sub">Solicitante:</h5>
-
+                                                            <div class="col-md-12 mb-3 transfer-to">
+                                                                <h5 class="sub">Solicitante: <span id="name"></span></h5>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-6 mb-3 transfer-to">
                                                                 <div class="account-transfer">
-                                                                    <div><span>Fecha nicio:</span><span></span></div>
-                                                                    <div><span>Días disponibles:</span><span></span></div>
-
+                                                                    <div><span>Fecha Inicio:</span><span id="sol_ini"></span></div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-sm-6 col-md-6 mb-3 mb-md-0 transfer-to">
-                                                                <!-- <div class="col-sm-6 col-md-6 transfer-total"> -->
-                                                                <h5 class="sub">Reemplazante:</h5>
                                                                 <div class="account-transfer">
-                                                                    <div><span>Fecha término:</span><span></span></div>
-                                                                    <div><span>Días solicitados:</span><span></span></div>
-
+                                                                    <div><span>Fecha término:</span><span id="sol_fin"></span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-6 mb-3 transfer-to">
+                                                                <div class="account-transfer">
+                                                                    <div><span>Días disponibles:</span><span id="dias_disp"></span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-6 col-md-6 mb-3 mb-md-0 transfer-to">
+                                                                <div class="account-transfer">
+                                                                    <div><span>Días solicitados:</span><span id="dias_pedidos"></span></div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -514,8 +519,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer no-bd">
-                                                <button type="button" id="addRowButton" class="btn btn-success">Aprobar</button>
-                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Rechazar</button>
+                                                <button type="button" class="btn btn-success" onclick="fillSolicitudPermiso(2)">Aprobar</button>
+                                                <button type="button" class="btn btn-danger" onclick="fillSolicitudPermiso(3)">Rechazar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -537,70 +542,6 @@
                                         </thead>
 
                                         <tbody>
-                                        <tr>
-                                            <td>Priscilla</td>
-                                            <td>01-07-2019</td>
-                                            <td>11-07-2019</td>
-                                            <td>20-07-2019</td>
-
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button class="btn btn-secondary">Solicitado</button>
-
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button class="btn btn-link btn-primary btn-lg" data-toggle="modal" data-target="#addRowModal"><i class="far fa-eye"></i>
-                                                    </button>
-
-                                                </div>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Benjamín</td>
-                                            <td>01-06-2019</td>
-                                            <td>11-06-2019</td>
-                                            <td>20-06-2019</td>
-
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button class="btn btn-success">Aprobado</button>
-
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button class="btn btn-link btn-primary btn-lg" data-original-title="Ver" data-toggle="modal"  data-target="#addRowModal"><i class="far fa-eye"></i>
-                                                    </button>
-
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Francisco</td>
-                                            <td>01-05-2019</td>
-                                            <td>11-05-2019</td>
-                                            <td>20-05-2019</td>
-
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button class="btn btn-danger">Rechazado</button>
-
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-button-action">
-                                                    <button class="btn btn-link btn-primary btn-lg" data-original-title="Ver" data-toggle="modal"  data-target="#addRowModal"><i class="far fa-eye"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -1136,6 +1077,7 @@
   }
   const santiagoOffset = 4*60*60*1000
   let table
+  let sols = []
   const loggedUser = JSON.parse(localStorage.getItem('userInfo'))
   $(document).ready(function() {
     table = $('#add-row').DataTable();
@@ -1144,17 +1086,18 @@
         document.getElementById('loadingTable').innerHTML = users.msg
       } else {
         if(certSols.data) {
+          sols = certSols.data
           table.clear()
           for(let i = 0; i < certSols.data.length ; i++){
             const {solicitud, from, to} = certSols.data[i]
-            if(solicitud.status === 1 && (loggedUser.empleado.unidad === solicitud.user.empleado.unidad)) {
+            if((loggedUser.empleado.unidad === solicitud.user.empleado.unidad)) {
               table.row.add([
                 solicitud.user.username,
                 new Date(solicitud.fechaCreacion + santiagoOffset).toLocaleString().split(' ')[0],
                 new Date(from + santiagoOffset).toLocaleString().split(' ')[0],
                 new Date(to + santiagoOffset).toLocaleString().split(' ')[0],
                 statusDivs[solicitud.status],
-                action(solicitud.id)
+                solicitud.status === 1 ? action(solicitud.id) : '-'
               ]).draw('false')
             }
           }
@@ -1162,52 +1105,30 @@
       }
     })
   });
-  async function createSolicitudPermiso() {
-    let from = document.getElementById('f_ini').value
-    let to = document.getElementById('f_fin').value
-    from = new Date(from).getTime();
-    to = new Date(to).getTime();
-    if(from && to) {
-      const daysBetween = parseInt((to - from)/(1000*60*60*24), 10)
-      if(daysBetween > loggedUser.diasRestantes) {
-        alert('No quedan días!')
-        return
-      }
-      const solicitud = {
-        status: 1,
-        type: 1,
-        iduser: loggedUser.user.id,
-        fechaCreacion: new Date().getTime()
-      }
-      const newSol = await renderer.request('/solicituds/add', solicitud, 'POST')
-      if(newSol.err) {
-        alert(newSol.msg)
-      } else {
-        const solicitud = newSol.data
-        const pSol = {
-          idsolicitud: solicitud.id,
-          from,
-          to,
-          idpermiso: 1
-        }
-        const newPSol = await renderer.request('/permisoSolicituds/add', pSol, 'POST')
-        if(!newPSol.err) {
-          const {solicitud, from, to} = newPSol.data
-          table.row.add([
-            new Date(solicitud.fechaCreacion + santiagoOffset).toLocaleString().split(' ')[0],
-            new Date(from + santiagoOffset).toLocaleString().split(' ')[0],
-            new Date(to + santiagoOffset).toLocaleString().split(' ')[0],
-            parseInt((to - from)/(1000*60*60*24), 10),
-            statusDivs[solicitud.status]
-          ]).draw('false')
-          $("#addRowModal").modal('toggle')
-        } else {
-          alert(newSol.msg)
-        }
-      }
+  let selectedPSol = 0
+  function setModal(idSol){
+    console.log(typeof idSol)
+    const sol = sols.find(item => item.solicitud.id === idSol)
+    console.log(sol)
+    if(sol) {
+      document.getElementById('name').innerHTML = sol.solicitud.user.persona.nombre
+      document.getElementById('sol_ini').innerHTML = new Date(sol.from).toLocaleString().split(' ')[0]
+      document.getElementById('sol_fin').innerHTML = new Date(sol.to).toLocaleString().split(' ')[0]
+      document.getElementById('dias_disp').innerHTML = sol.solicitud.user.empleado.diasRestantes
+      document.getElementById('dias_pedidos').innerHTML = parseInt((sol.to - sol.from)/(24*60*60*1000), 10)
+      selectedPSol = sol.id
+    }
+  }
+  async function fillSolicitudPermiso(status) {
+    const solicitud = {
+      response: status,
+      fecha: new Date().getTime()
+    }
+    const permisoSol = await renderer.request(`/permisoSolicituds/fill/${selectedPSol}`, solicitud, 'POST')
+    if(permisoSol.err) {
+      alert(permisoSol.msg)
     } else {
-      alert('error')
-      console.log({from, to})
+      location.reload()
     }
   }
 </script>

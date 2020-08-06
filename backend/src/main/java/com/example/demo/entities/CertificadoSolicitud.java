@@ -20,7 +20,7 @@ public class CertificadoSolicitud {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idCertificadoSolicitud")
 	Long Id;
-    @OneToOne
+    @OneToOne(optional = false, cascade = CascadeType.REMOVE)
     @MapsId("idsolicitud")
     private Solicitud solicitud;
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)

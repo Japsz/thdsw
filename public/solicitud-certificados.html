@@ -488,26 +488,18 @@
 															<div class="col-sm-12">
 																<div class="form-group form-group-default">
 																	<label>Tipo</label>
-																	<select class="form-control" id="">
-																		<option>Seleccione</option>
-																		<option>Renta</option>
-																		<option>Antigüedad laboral</option>
-																		<option>Pago Cotizaciones</option>
+																	<select class="form-control" id="idcertificado">
+																		<option value="1">Renta</option>
+																		<option value="2">Antigüedad laboral</option>
+																		<option value="3">Pago Cotizaciones</option>
 																	</select>
 																</div>
 															</div>
-															<div class="col-sm-12">
-																<div class="form-group form-group-default">
-																	<label>Observaciones</label>
-																	<textarea class="form-control" name="about" placeholder="" rows="3"></textarea>
-																</div>
-															</div>
-
 														</div>
 													</form>
 												</div>
 												<div class="modal-footer no-bd">
-													<button type="button" id="addRowButton" class="btn btn-primary">Solicitar</button>
+													<button type="button" id="addRowButton" class="btn btn-primary" onclick="createSolicitudCertificado()">Solicitar</button>
 													<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 												</div>
 											</div>
@@ -526,64 +518,6 @@
 											</thead>
 
 											<tbody>
-												<tr>
-													<td>01-07-2019</td>
-													<td>Renta</td>
-													<td>
-														<div class="form-button-action">
-															<button class="btn btn-secondary">Solicitado</button>
-
-														</div>
-													</td>
-													<td>
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Descargar">
-																<i class="fas fa-arrow-alt-circle-down"></i>
-															</button>
-
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td>01-07-2019</td>
-													<td>Antigüedad Laboral</td>
-													<td>
-														<div class="form-button-action">
-															<button class="btn btn-success">Gestionado</button>
-
-														</div>
-													</td>
-													<td>
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Descargar">
-																<i class="fas fa-arrow-alt-circle-down"></i>
-															</button>
-
-														</div>
-													</td>
-												</tr>
-
-												<tr>
-													<td>01-07-2019</td>
-													<td>Pago Cotizaciones</td>
-													<td>
-														<div class="form-button-action">
-															<button class="btn btn-success">Gestionado</button>
-
-														</div>
-													</td>
-													<td>
-														<div class="form-button-action">
-															<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Descargar">
-																<i class="fas fa-arrow-alt-circle-down"></i>
-															</button>
-
-														</div>
-													</td>
-												</tr>
-
-
-
 											</tbody>
 										</table>
 									</div>
@@ -1107,6 +1041,18 @@
 	<script src="./view-engine/renderer.js"></script>
 	<script src="assets/js/profile-setter.js"></script>
 	<script >
+		const downloadLink = (link) =>  `
+		<div class="form-button-action">
+			<a href="${link}" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Descargar" target="_blank">
+				<i class="fas fa-arrow-alt-circle-down"></i>
+			</a>
+		</div>
+`
+		const statusDivs = {
+			1: '<span class="badge badge-secondary">Pendiente</span>',
+			2: '<span class="badge badge-success">Aceptado</span>',
+			3: '<span class="badge badge-danger">Rechazado</span>'
+		}
 		let table
 		const loggedUser = JSON.parse(localStorage.getItem('userInfo'))
 		$(document).ready(function() {
@@ -1119,12 +1065,13 @@
 					if(certSols.data) {
 						table.clear()
 						for(let i = 0; i < certSols.data.length ; i++){
-							if(loggedUser.solicitud.user.id === loggedUser.user.id) {
-								const {solicitud, certificado, fileLink} = certSols.data[i]
+							const {solicitud, certificado, fileLink} = certSols.data[i]
+							if(solicitud.user.id === loggedUser.id) {
 								table.row.add([
-									certSol.username,
-									certSol.password,
-									certSol.type,
+									new Date(solicitud.fechaCreacion).toLocaleString().split(' ')[0],
+									certificado.nombre,
+									statusDivs[solicitud.status],
+									solicitud.status === 2 && fileLink ? downloadLink(fileLink) : '-'
 								]).draw('false');
 							}
 						}
@@ -1133,6 +1080,29 @@
 
 			})
 		});
+		async function createSolicitudCertificado(){
+			let idcert = document.getElementById('idcertificado').value
+			const solicitud = {
+				status: 1,
+				type: 1,
+				iduser: loggedUser.id,
+				fechaCreacion: new Date().getTime(),
+				idcertificado: idcert
+			}
+			const newSol = await renderer.request('/certificadoSolicituds/add', solicitud, 'POST')
+			if(newSol.err) {
+				alert(newSol.msg)
+			} else {
+				const {solicitud, certificado, fileLink} = newSol.data
+				table.row.add([
+					new Date(solicitud.fechaCreacion).toLocaleString().split(' ')[0],
+					certificado.nombre,
+					statusDivs[solicitud.status],
+					'-'
+				]).draw('false')
+				$("#addRowModal").modal('toggle')
+			}
+		}
 	</script>
 </body>
 </html>
