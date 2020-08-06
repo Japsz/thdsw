@@ -1,6 +1,5 @@
 package com.example.demo.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +26,16 @@ public class User {
 	@OneToOne
 	@JoinColumn(name = "iduser", nullable = true)
 	private Empleado empleado;
+	@OneToOne
+	@JoinColumn(name = "iduser", nullable = true)
+	private Persona persona;
+	
+	public Persona getPersona() {
+		return persona;
+	}
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
 	public Long getId() {
 		return Id;
 	}

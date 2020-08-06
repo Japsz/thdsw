@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.controller.UserController;
 import com.example.demo.entities.Empleado;
+import com.example.demo.entities.Persona;
 import com.example.demo.entities.User;
+import com.example.demo.requests.AddUser;
 import com.example.demo.service.UserService;
 import com.example.demo.service.EmpleadoService;
+import com.example.demo.service.PersonaService;
 
 
 @RestController
@@ -22,6 +25,8 @@ public class UserControllerImpl implements UserController {
 	UserService userService;
 	@Autowired
 	EmpleadoService empleadoService;
+	@Autowired
+	PersonaService personaService;
 
 
 	// http://localhost:8888/users (GET)
@@ -44,12 +49,28 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/add (ADD)
 	@Override
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/users/add", method = RequestMethod.POST, produces = "application/json")
-	public User addUser(@RequestBody User user) {
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
-		return userService.saveUser(user);
+	public User addUser(@RequestBody AddUser req) {
+		User newUser = new User();
+		Empleado newEmpleado = new Empleado();
+		Persona newPersona = new Persona();
+		newUser.setUsername(req.username);
+		newUser.setPassword(req.password);
+		newUser.setType(req.type);
+
+		User savedUser = userService.saveUser(newUser);
+		newEmpleado.setId(savedUser.getId());
+		newEmpleado.setCargo(req.cargo);
+		newEmpleado.setDiasRestantes(10);
+		newEmpleado.setUnidad(req.unidad);
+		savedUser.setEmpleado(empleadoService.saveEmpleado(newEmpleado));
+
+		newPersona.setNombre(req.name);
+		newPersona.setId(savedUser.getId());
+		savedUser.setPersona(personaService.savePersona(newPersona));
+
+		return savedUser;
 	}
 
 

@@ -509,13 +509,57 @@
 							</button>
 						</div>
 						<div class="modal-body">
-							<div class="form-group">
-								<label for="newUsername">Username</label>
-								<input id="newUsername" type="text" class="form-control" placeholder="user" name="username">
+							<div class="row mt-3">
+								<div class="col-md-12">
+									<div class="form-group form-group-default">
+										<label>Nombre</label>
+										<input type="text" class="form-control" name="name" id="name" placeholder="" value="">
+									</div>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="newPassword">Password</label>
-								<input id="newPassword" type="password" class="form-control" name="password">
+							<div class="row mt-3">
+								<div class="col-md-6">
+									<div class="form-group form-group-default">
+										<label>Username</label>
+										<input type="text" class="form-control" name="username" id="newUsername" placeholder="" value="">
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group form-group-default">
+										<label>Password</label>
+										<input type="password" class="form-control" name="pass" id="newPassword" placeholder="" value="" />
+									</div>
+								</div>
+							</div>
+							<div class="row mt-3">
+								<div class="col-md-6">
+									<div class="form-group form-group-default">
+										<label>Unidad</label>
+										<select class="form-control" id="unidad">
+											<option value="admin" selected>Administración</option>
+											<option value="informatica">Informática</option>
+											<option value="marketing">Comercial</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group form-group-default">
+										<label>Cargo</label>
+										<input type="text" class="form-control" name="name" id="cargo" placeholder="Ej. Desarrollador" value="">
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group form-group-default">
+										<label>Tipo Funcionario</label>
+										<select class="form-control" id="userType">
+											<option value="1" selected>Funcionario</option>
+											<option value="2">Jefatura</option>
+											<option value="3">Administrador</option>
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
@@ -1055,7 +1099,19 @@
 		async function createUser() {
 			const username = document.getElementById('newUsername').value
 			const password = document.getElementById('newPassword').value
-			const newUser = await renderer.request('/users/add', {username, password, type: 1}, 'POST')
+			const name = document.getElementById('name').value
+			const unidad = document.getElementById('unidad').value
+			const cargo = document.getElementById('cargo').value
+			const type = document.getElementById('userType').value
+			const request = {
+				username,
+				password,
+				name,
+				unidad,
+				cargo,
+				type,
+			}
+			const newUser = await renderer.request('/users/add', request, 'POST')
 			if(newUser.err) {
 				alert(newUser.msg)
 				return
