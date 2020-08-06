@@ -31,7 +31,7 @@ public class PermisoSolicitudControllerImpl implements PermisoSolicitudControlle
 
 	// http://localhost:8888/permisoSolicituds (GET)
 	@RequestMapping(value = "/permisoSolicituds", method = RequestMethod.GET, produces = "application/json")
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@Override
 	public List<PermisoSolicitud> getPermisoSolicituds() {
 		return permisoSolicitudService.findAllPermisoSolicituds();
@@ -49,7 +49,7 @@ public class PermisoSolicitudControllerImpl implements PermisoSolicitudControlle
 
 	// http://localhost:8888/permisoSolicituds/add (ADD)
 	@Override
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/permisoSolicituds/add", method = RequestMethod.POST, produces = "application/json")
 	public PermisoSolicitud addPermisoSolicitud(@RequestBody AddPermisoSolicitud request) {
 		PermisoSolicitud pSol = new PermisoSolicitud();

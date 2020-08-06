@@ -30,7 +30,7 @@ public class UserControllerImpl implements UserController {
 
 
 	// http://localhost:8888/users (GET)
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
 	@Override
 	public List<User> getUsers() {
@@ -40,7 +40,7 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/1 (GET)
 	@Override
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Optional<User> getUserById(@PathVariable Long id) {
 		return userService.findUserById(id);
@@ -85,7 +85,7 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/users/update (PATCH)
 	@Override
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/users/update", method = RequestMethod.PATCH, produces = "application/json")
 	public String updateUser(@RequestBody User userNew) {
 		return userService.updateUser(userNew);
@@ -94,7 +94,7 @@ public class UserControllerImpl implements UserController {
 
 	// http://localhost:8888/auth (GET)
 	@RequestMapping(value = "/users/auth", method = RequestMethod.POST, produces = "application/json")
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@Override
 	public User authUser(@RequestBody User user) {
 		System.out.println(user.getPassword());

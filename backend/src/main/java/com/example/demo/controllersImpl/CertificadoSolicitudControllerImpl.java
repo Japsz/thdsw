@@ -30,7 +30,7 @@ public class CertificadoSolicitudControllerImpl implements CertificadoSolicitudC
 
 	// http://localhost:8888/certificadoSolicituds/1 (GET)
 	@Override
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/certificadoSolicituds/{id}", method = RequestMethod.GET, produces = "application/json")
 	public Optional<CertificadoSolicitud> getCertificadoSolicitudById(@PathVariable Long id) {
 		return certificadoSolicitudService.findCertificadoSolicitudById(id);
@@ -39,7 +39,7 @@ public class CertificadoSolicitudControllerImpl implements CertificadoSolicitudC
 
 	// http://localhost:8888/certificadoSolicituds/add (ADD)
 	@Override
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/certificadoSolicituds/add", method = RequestMethod.POST, produces = "application/json")
 	public CertificadoSolicitud addCertificadoSolicitud(CertificadoSolicitud certificadoSolicitud) {
 		return certificadoSolicitudService.saveCertificadoSolicitud(certificadoSolicitud);
