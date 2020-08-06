@@ -1,8 +1,6 @@
-<%
-if(data.length) {
+<% if(data.length) {
   for(let i = 0; i < data.length; i++){
-  const user = data[i];
-%>
+  const user = data[i]; %>
 <li><b>Username:</b> <%= user.username%> Id: <%= user.id%></li>
 <%
   }

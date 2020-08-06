@@ -1,5 +1,7 @@
 package com.example.demo.entities;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,9 +26,9 @@ public class Solicitud {
 	@Column(name = "status")
 	Integer status;
 	@Column(name = "fechaCreacion")
-	Integer fechaCreacion;
+	BigInteger fechaCreacion;
 	@Column(name = "fechaResolucion")
-	Integer fechaResolucion;
+	BigInteger fechaResolucion;
 	public Long getId() {
 		return Id;
 	}
@@ -51,16 +53,17 @@ public class Solicitud {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public Integer getFechaCreacion() {
+	public BigInteger getFechaCreacion() {
 		return fechaCreacion;
 	}
-	public void setFechaCreacion(Integer fechaCreacion) {
+	public void setFechaCreacion(BigInteger fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public Integer getFechaResolucion() {
+	public BigInteger getFechaResolucion() {
 		return fechaResolucion;
 	}
-	public void setFechaResolucion(Integer fechaResolucion) {
+	public void setFechaResolucion(BigInteger fechaResolucion) {
 		this.fechaResolucion = fechaResolucion;
 	}
+
 }

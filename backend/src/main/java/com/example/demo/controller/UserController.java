@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 import com.example.demo.entities.User;
+import com.example.demo.entities.Empleado;
 
 
 public interface UserController {
@@ -20,7 +21,7 @@ public interface UserController {
 
 	public String updateUser(User userNew);
 
-	public String authUser(User authUser);
+	public User authUser(User authUser);
 
 }
 

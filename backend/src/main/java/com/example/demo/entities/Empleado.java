@@ -1,79 +1,76 @@
 package com.example.demo.entities;
 
+import java.math.BigInteger;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "empleado")
 public class Empleado {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "Id")
-	Long Id;
-	@Column(name = "rut")
-	String rut;
-	@Column(name = "afp")
-	String afp;
-	@Column(name = "isapre")
-	String isapre;
-	@Column(name = "profesion")
-	String profesion;
-	@Column(name = "mail")
-	String mail;
-	@Column(name = "telefono")
-	String telefono;
-	@Column(name = "direccion")
-	String direccion;
+	@Column(name = "iduser")
+	private Long Id;
+	@Column(name = "cargo")
+	String cargo;
+	@Column(name = "unidad")
+	String unidad;
+	@Column(name = "contratoType")
+	String contratoType;
+	@Column(name = "contratoIni")
+	BigInteger contratoIni;
+	@Column(name = "contratoFin")
+	BigInteger contratoFin;
+	@Column(name = "diasRestantes")
+	int diasRestantes;
+	
 	public Long getId() {
 		return Id;
 	}
 	public void setId(Long id) {
 		Id = id;
 	}
-	public String getRut() {
-		return rut;
+	public String getCargo() {
+		return cargo;
 	}
-	public void setRut(String rut) {
-		this.rut = rut;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
-	public String getAfp() {
-		return afp;
+	public String getUnidad() {
+		return unidad;
 	}
-	public void setAfp(String afp) {
-		this.afp = afp;
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
 	}
-	public String getIsapre() {
-		return isapre;
+	public String getContratoType() {
+		return contratoType;
 	}
-	public void setIsapre(String isapre) {
-		this.isapre = isapre;
+	public void setContratoType(String contratoType) {
+		this.contratoType = contratoType;
 	}
-	public String getProfesion() {
-		return profesion;
+	public BigInteger getContratoIni() {
+		return contratoIni;
 	}
-	public void setProfesion(String profesion) {
-		this.profesion = profesion;
+	public void setContratoIni(BigInteger contratoIni) {
+		this.contratoIni = contratoIni;
 	}
-	public String getMail() {
-		return mail;
+	public BigInteger getContratoFin() {
+		return contratoFin;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setContratoFin(BigInteger contratoFin) {
+		this.contratoFin = contratoFin;
 	}
-	public String getTelefono() {
-		return telefono;
+	public int getDiasRestantes() {
+		return diasRestantes;
 	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setDiasRestantes(int diasRestantes) {
+		this.diasRestantes = diasRestantes;
 	}
-	public String getDireccion() {
-		return direccion;
-	}
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
+	
 }

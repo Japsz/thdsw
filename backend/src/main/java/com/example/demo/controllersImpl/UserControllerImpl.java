@@ -10,14 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.controller.UserController;
+import com.example.demo.entities.Empleado;
 import com.example.demo.entities.User;
 import com.example.demo.service.UserService;
+import com.example.demo.service.EmpleadoService;
 
 
 @RestController
 public class UserControllerImpl implements UserController {
 	@Autowired
 	UserService userService;
+	@Autowired
+	EmpleadoService empleadoService;
 
 
 	// http://localhost:8888/users (GET)
@@ -71,14 +75,14 @@ public class UserControllerImpl implements UserController {
 	@RequestMapping(value = "/users/auth", method = RequestMethod.POST, produces = "application/json")
 	@CrossOrigin(origins = "http://localhost:8081")
 	@Override
-	public String authUser(@RequestBody User user) {
+	public User authUser(@RequestBody User user) {
 		System.out.println(user.getPassword());
 		System.out.println(user.getUsername());
 		System.out.println(user.getType());
 		User authedUser = userService.authUser(user.getUsername(), user.getPassword());
 		if(authedUser != null) {
-			return "true";
+			return authedUser;
 		}
-		return "false";
+		return null;
 	}
 }

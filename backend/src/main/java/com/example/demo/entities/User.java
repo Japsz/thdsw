@@ -1,11 +1,15 @@
 package com.example.demo.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.OneToOne;
+
 
 @Entity
 @Table(name = "user")
@@ -20,8 +24,17 @@ public class User {
 	String password;
 	@Column(name = "type")
 	Integer type;
+	@OneToOne
+	@JoinColumn(name = "iduser", nullable = true)
+	private Empleado empleado;
 	public Long getId() {
 		return Id;
+	}
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 	public void setId(Long id) {
 		Id = id;

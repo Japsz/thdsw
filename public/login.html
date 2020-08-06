@@ -77,11 +77,13 @@
 				return
 			}
 			if(isLogged.data) {
+				console.log({isLogged: isLogged.data})
 				alertRef.className = 'alert alert-success'
 				alertRef.innerHTML = 'Logueado Correctamente! Redireccionando...'
 				localStorage.setItem('isLogged', 'true')
+				localStorage.setItem('userInfo', JSON.stringify(isLogged.data))
 				setTimeout(() => {
-					window.location.href = '/'
+					window.location.href = '/miperfil'
 				}, 1500);
 			} else {
 				alertRef.className = 'alert alert-danger'

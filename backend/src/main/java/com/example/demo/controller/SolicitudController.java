@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Optional;
+
 import com.example.demo.entities.Solicitud;
+import com.example.demo.requests.AddSolicitud;
 
 
 public interface SolicitudController {
@@ -12,7 +14,7 @@ public interface SolicitudController {
 	public Optional<Solicitud> getSolicitudById(Long id);
 
 
-	public Solicitud addSolicitud(Solicitud solicitud);
+	public Solicitud addSolicitud(AddSolicitud solicitud);
 
 
 	public String deleteSolicitud(Long id);

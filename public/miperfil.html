@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>PriBen RRHH Manager</title>
+	<title>Atlantis Bootstrap 4 Admin Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="https://via.placeholder.com/32x32" type="image/x-icon"/>
 
@@ -18,11 +18,9 @@
 		});
 	</script>
 	<script src="assets/js/funcs.js"></script>
-
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/atlantis.min.css">
-
 	<!-- CSS Just for demo purpose, don't include it in your project -->
 	<link rel="stylesheet" href="assets/css/demo.css">
 </head>
@@ -85,9 +83,7 @@
 									</li>
 									<li>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">My Profile</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Account Setting</a>
+										<a class="dropdown-item" href="/miperfil">Mi perfil</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" onclick="logout()">Logout</a>
 									</li>
@@ -110,7 +106,7 @@
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
-								<span>
+								<span id="userCard">
 									PriBen
 									<span class="user-level">Administrador</span>
 									<span class="caret"></span>
@@ -121,17 +117,12 @@
 							<div class="collapse in" id="collapseExample">
 								<ul class="nav">
 									<li>
-										<a href="#profile">
+										<a href="miperfil.html">
 											<span class="link-collapse">Mi Perfil</span>
 										</a>
 									</li>
 									<li>
-										<a href="#edit">
-											<span class="link-collapse">Editar Perfil</span>
-										</a>
-									</li>
-									<li>
-										<a href="#settings">
+										<a href="#settings" onclick="logout()">
 											<span class="link-collapse">Salir</span>
 										</a>
 									</li>
@@ -153,8 +144,8 @@
 							<span class="sidebar-mini-icon">
 								<i class="fa fa-ellipsis-h"></i>
 							</span>
-							<!-- <h4 class="text-section">Components</h4>
- -->						</li>
+							<!-- <h4 class="text-section">Components</h4>-->
+						</li>
 						<!--
 						<li class="nav-item">
 							<a data-toggle="collapse" href="#base">
@@ -193,9 +184,11 @@
 									</li>
 									<li>
 										<a href="visar-permisos.html">
-											<span class="sub-item">Visar</span>
+											<span class="sub-item">Visados</span>
 										</a>
 									</li>
+
+
 								</ul>
 							</div>
 						</li>
@@ -214,7 +207,7 @@
 									</li>
 									<li>
 										<a href="visar-certificado.html">
-											<span class="sub-item">Gestionar</span>
+											<span class="sub-item">Gestionados</span>
 										</a>
 									</li>
 
@@ -437,91 +430,245 @@
 			</div>
 		</div>
 		<!-- End Sidebar -->
-
 		<div class="main-panel">
 			<div class="content">
-				<div class="panel-header bg-primary-gradient">
-					<div class="page-inner py-5">
-						<div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
-							<div>
-								<h2 class="text-white pb-2 fw-bold">Inicio</h2>
-								<h5 class="text-white op-7 mb-2">Bienvenido</h5>
-							</div>
-							<!-- <div class="ml-md-auto py-2 py-md-0">
-								<a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-								<a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-							</div> -->
-						</div>
-					</div>
-				</div>
-				<div class="page-inner mt--5">
-					<div class="row mt--2">
+				<div class="page-inner">
+					<h4 class="page-title">Mi Perfil</h4>
+					<div class="row">
 						<div class="col-md-12">
-							<div class="card full-height">
-								<div class="card-body">
-									<div class="card-title">
-										Usuarios
-										<button data-target="#createUserModal" data-toggle="modal" class="btn btn-primary float-right">+ Añadir</button>
+							<div class="card card-with-nav">
+								<div class="card-header">
+									<div class="row row-nav-line">
+										<ul class="nav nav-tabs nav-line nav-color-secondary" role="tablist">
+											<li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#personales" role="tab" aria-selected="true">Personales</a> </li>
+											<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#laborales" role="tab" aria-selected="false">Laborales</a> </li>
+											<li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#contrasena" role="tab" aria-selected="false">Cambio Contraseña</a> </li>
+										</ul>
+
 									</div>
-									<div class="card-category">Resumen de usuarios registrados en la plataforma</div>
-									<div class="table-responsive mt-4">
-										<table id="basic-datatables" class="display table table-striped table-hover" >
-											<thead>
-											<tr>
-												<th>Id</th>
-												<th>Username</th>
-												<th>Password</th>
-												<th>Type</th>
-											</tr>
-											</thead>
-											<tfoot>
-											<tr>
-												<th>Id</th>
-												<th>Username</th>
-												<th>Password</th>
-												<th>Type</th>
-											</tr>
-											</tfoot>
-											<tbody>
-												<tr>
-													<th colspan="4" id="loadingTable"> Cargando...</th>
-													<th></th>
-													<th></th>
-													<th></th>
-												</tr>
-											</tbody>
-										</table>
+								</div>
+								<div class="card-body">
+									<div class="tab-content mt-3">
+										<div class="tab-pane active" id="personales" role="tabpanel">
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Nombre</label>
+														<input type="text" class="form-control" name="name" placeholder="" value="">
+													</div>
+												</div>
+
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Apellido Paterno</label>
+														<input type="text" class="form-control" name="name" placeholder="" value="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Apellido Materno</label>
+														<input type="email" class="form-control" name="email" placeholder="" value="">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Rut</label>
+														<input type="text" class="form-control" name="name" placeholder="11.111.111-1" value="">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Email</label>
+														<input type="email" class="form-control" name="email" placeholder="hello@priben.com" value="">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-4">
+													<div class="form-group form-group-default">
+														<label>Fecha de Nacimiento</label>
+														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Ingrese fecha">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-group-default">
+														<label>Género</label>
+														<select class="form-control" id="gender">
+															<option>Masculino</option>
+															<option>Femenino</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group form-group-default">
+														<label>Celular</label>
+														<input type="text" class="form-control" value="" name="phone" placeholder="+56912345678">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Dirección</label>
+														<input type="text" class="form-control" value="" name="address" placeholder="Calle, número y Comuna">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3 mb-1">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>En caso de emergencia contactar a:</label>
+														<textarea class="form-control" name="about" placeholder="Ingrese nombre y número de teléfono" rows="3"></textarea>
+													</div>
+												</div>
+											</div>
+											<div class="text-right mt-3 mb-3">
+												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-danger">Cancelar</button>
+											</div>
+										</div>
+
+										<div class="tab-pane" id="laborales" role="tabpanel">
+
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Cargo</label>
+														<input type="text" class="form-control" name="name" placeholder="Ej. Desarrollador" value="">
+													</div>
+												</div>
+
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Fecha Inicio Contrato</label>
+														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Seleccione fecha">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Fecha Término Contrato</label>
+														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Seleccione fecha">
+													</div>
+												</div>
+											</div>
+											<div class="row mt-3">
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Unidad</label>
+														<select class="form-control" id="">
+															<option>Administración</option>
+															<option>Informática</option>
+															<option>Comercial</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group form-group-default">
+														<label>Tipo Contrato</label>
+														<select class="form-control" id="">
+															<option>Indefinido</option>
+															<option>Plazo fijo</option>
+															<option>Honorarios</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="text-right mt-3 mb-3">
+												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-danger">Cancelar</button>
+											</div>
+										</div>
+										<div class="tab-pane" id="contrasena" role="tabpanel">
+
+											<div class="row mt-3">
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Contraseña actual</label>
+														<input type="text" class="form-control" name="name" placeholder="Ingrese datos" value="">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Nueva contraseña</label>
+														<input type="text" class="form-control" name="name" placeholder="Ingrese datos" value="">
+													</div>
+												</div>
+												<div class="col-md-12">
+													<div class="form-group form-group-default">
+														<label>Confirme nueva contraseña</label>
+														<input type="text" class="form-control" name="name" placeholder="Ingrese datos" value="">
+													</div>
+												</div>
+
+											</div>
+
+
+											<div class="text-right mt-3 mb-3">
+												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-danger">Cancelar</button>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Modal -->
-			<div class="modal fade" id="createUserModal" tabindex="-1" role="dialog" aria-labelledby="createUserModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="createUserModalLabel">Crear Usuario</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<label for="newUsername">Username</label>
-								<input id="newUsername" type="text" class="form-control" placeholder="user" name="username">
+						<!-- <div class="col-md-4">
+							<div class="card card-profile">
+								<div class="card-header" style="background-image: url('https://via.placeholder.com/325x215')">
+									<div class="profile-picture">
+										<div class="avatar avatar-xl">
+											<img src="https://via.placeholder.com/60x60" alt="..." class="avatar-img rounded-circle">
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="user-profile text-center">
+										<div class="name">Hizrian, 19</div>
+										<div class="job">Frontend Developer</div>
+										<div class="desc">A man who hates loneliness</div>
+										<div class="social-media">
+											<a class="btn btn-info btn-twitter btn-sm btn-link" href="#">
+												<span class="btn-label just-icon"><i class="flaticon-twitter"></i> </span>
+											</a>
+											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#">
+												<span class="btn-label just-icon"><i class="flaticon-google-plus"></i> </span>
+											</a>
+											<a class="btn btn-primary btn-sm btn-link" rel="publisher" href="#">
+												<span class="btn-label just-icon"><i class="flaticon-facebook"></i> </span>
+											</a>
+											<a class="btn btn-danger btn-sm btn-link" rel="publisher" href="#">
+												<span class="btn-label just-icon"><i class="flaticon-dribbble"></i> </span>
+											</a>
+										</div>
+										<div class="view-profile">
+											<a href="#" class="btn btn-secondary btn-block">View Full Profile</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="row user-stats text-center">
+										<div class="col">
+											<div class="number">125</div>
+											<div class="title">Post</div>
+										</div>
+										<div class="col">
+											<div class="number">25K</div>
+											<div class="title">Followers</div>
+										</div>
+										<div class="col">
+											<div class="number">134</div>
+											<div class="title">Following</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="newPassword">Password</label>
-								<input id="newPassword" type="password" class="form-control" name="password">
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-							<button type="button" class="btn btn-primary" onclick="createUser()">Crear Usuario</button>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
@@ -552,7 +699,6 @@
 				</div>
 			</footer>
 		</div>
-
 		<div class="quick-sidebar">
 			<a href="#" class="close-quick-sidebar">
 				<i class="flaticon-cross"></i>
@@ -884,7 +1030,7 @@
 										<li>
 											<span class="item-label">Enable Notifications</span>
 											<div class="item-control">
-												<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round" data-size>
+												<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
 											</div>
 										</li>
 										<li>
@@ -947,128 +1093,100 @@
 				</div>
 			</div>
 		</div>
+		<!-- Custom template | don't include it in your project! -->
+		<div class="custom-template">
+			<div class="title">Settings</div>
+			<div class="custom-content">
+				<div class="switcher">
+					<div class="switch-block">
+						<h4>Logo Header</h4>
+						<div class="btnSwitch">
+							<button type="button" class="changeLogoHeaderColor" data-color="dark"></button>
+							<button type="button" class="selected changeLogoHeaderColor" data-color="blue"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="purple"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="light-blue"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="green"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="orange"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="red"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="white"></button>
+							<br/>
+							<button type="button" class="changeLogoHeaderColor" data-color="dark2"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="blue2"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="purple2"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="light-blue2"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="green2"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="orange2"></button>
+							<button type="button" class="changeLogoHeaderColor" data-color="red2"></button>
+						</div>
+					</div>
+					<div class="switch-block">
+						<h4>Navbar Header</h4>
+						<div class="btnSwitch">
+							<button type="button" class="changeTopBarColor" data-color="dark"></button>
+							<button type="button" class="changeTopBarColor" data-color="blue"></button>
+							<button type="button" class="changeTopBarColor" data-color="purple"></button>
+							<button type="button" class="changeTopBarColor" data-color="light-blue"></button>
+							<button type="button" class="changeTopBarColor" data-color="green"></button>
+							<button type="button" class="changeTopBarColor" data-color="orange"></button>
+							<button type="button" class="changeTopBarColor" data-color="red"></button>
+							<button type="button" class="changeTopBarColor" data-color="white"></button>
+							<br/>
+							<button type="button" class="changeTopBarColor" data-color="dark2"></button>
+							<button type="button" class="selected changeTopBarColor" data-color="blue2"></button>
+							<button type="button" class="changeTopBarColor" data-color="purple2"></button>
+							<button type="button" class="changeTopBarColor" data-color="light-blue2"></button>
+							<button type="button" class="changeTopBarColor" data-color="green2"></button>
+							<button type="button" class="changeTopBarColor" data-color="orange2"></button>
+							<button type="button" class="changeTopBarColor" data-color="red2"></button>
+						</div>
+					</div>
+					<div class="switch-block">
+						<h4>Sidebar</h4>
+						<div class="btnSwitch">
+							<button type="button" class="selected changeSideBarColor" data-color="white"></button>
+							<button type="button" class="changeSideBarColor" data-color="dark"></button>
+							<button type="button" class="changeSideBarColor" data-color="dark2"></button>
+						</div>
+					</div>
+					<div class="switch-block">
+						<h4>Background</h4>
+						<div class="btnSwitch">
+							<button type="button" class="changeBackgroundColor" data-color="bg2"></button>
+							<button type="button" class="changeBackgroundColor selected" data-color="bg1"></button>
+							<button type="button" class="changeBackgroundColor" data-color="bg3"></button>
+							<button type="button" class="changeBackgroundColor" data-color="dark"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="custom-toggle">
+				<i class="flaticon-settings"></i>
+			</div>
+		</div>
+		<!-- End Custom template -->
 	</div>
 	<!--   Core JS Files   -->
 	<script src="assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="assets/js/core/popper.min.js"></script>
 	<script src="assets/js/core/bootstrap.min.js"></script>
-
 	<!-- jQuery UI -->
 	<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 	<script src="assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-
-	<!-- jQuery Scrollbar -->
-	<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-
 	<!-- Moment JS -->
-	<script src="assets/js/plugin/moment/moment.min.js"></script>
-
-	<!-- Chart JS -->
-	<script src="assets/js/plugin/chart.js/chart.min.js"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
-	<!-- Chart Circle -->
-	<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
-
-	<!-- Datatables -->
-	<script src="assets/js/plugin/datatables/datatables.min.js"></script>
-
-	<!-- Bootstrap Notify -->
-	<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-
+	<script src="assets/js/plugin/moment/moment.min.js"></script><!-- DateTimePicker -->
+	<script src="assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
 	<!-- Bootstrap Toggle -->
 	<script src="assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-
-	<!-- jQuery Vector Maps -->
-	<script src="assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-	<script src="assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
-
-	<!-- Google Maps Plugin -->
-	<script src="assets/js/plugin/gmaps/gmaps.js"></script>
-
-	<!-- Dropzone -->
-	<script src="assets/js/plugin/dropzone/dropzone.min.js"></script>
-
-	<!-- Fullcalendar -->
-	<script src="assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
-
-	<!-- DateTimePicker -->
-	<script src="assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
-
-	<!-- Bootstrap Tagsinput -->
-	<script src="assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-
-	<!-- Bootstrap Wizard -->
-	<script src="assets/js/plugin/bootstrap-wizard/bootstrapwizard.js"></script>
-
-	<!-- jQuery Validation -->
-	<script src="assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
-
-	<!-- Summernote -->
-	<script src="assets/js/plugin/summernote/summernote-bs4.min.js"></script>
-
-	<!-- Select2 -->
-	<script src="assets/js/plugin/select2/select2.full.min.js"></script>
-
-	<!-- Sweet Alert -->
-	<script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-	<!-- Owl Carousel -->
-	<script src="assets/js/plugin/owl-carousel/owl.carousel.min.js"></script>
-
-	<!-- Magnific Popup -->
-	<script src="assets/js/plugin/jquery.magnific-popup/jquery.magnific-popup.min.js"></script>
-
+	<!-- jQuery Scrollbar -->
+	<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 	<!-- Atlantis JS -->
 	<script src="assets/js/atlantis.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<script src="./view-engine/renderer.js"></script>
-
-
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+	<script src="assets/js/setting-demo.js"></script>
 	<script>
-		let table
-		const loggedUser = JSON.parse(localStorage.getItem('userInfo'))
-		$(document).ready(() => {
-			table = $('#basic-datatables').DataTable();
-			renderer.request('/users', {}, 'GET').then(users => {
-				console.log(users)
-				if(users.err) {
-					document.getElementById('loadingTable').innerHTML = users.msg
-				} else {
-					if(users.data) {
-						table.clear()
-						for(let i = 0; i < users.data.length ; i++){
-							const user = users.data[i]
-							table.row.add([
-								user.id,
-								user.username,
-								user.password,
-								user.type,
-							]).draw('false');
-						}
-					}
-				}
-			})
-		})
-		async function createUser() {
-			const username = document.getElementById('newUsername').value
-			const password = document.getElementById('newPassword').value
-			const newUser = await renderer.request('/users/add', {username, password, type: 1}, 'POST')
-			if(newUser.err) {
-				alert(newUser.msg)
-				return
-			}
-			const user = newUser.data
-			table.row.add([
-				user.id,
-				user.username,
-				user.password,
-				user.type,
-			]).draw('false');
-			$('#createUserModal').modal('toggle')
-		}
+		$('#datepicker').datetimepicker({
+			format: 'MM/DD/YYYY',
+		});
 	</script>
 </body>
 </html>
