@@ -83,7 +83,11 @@
 				localStorage.setItem('isLogged', 'true')
 				localStorage.setItem('userInfo', JSON.stringify(isLogged.data))
 				setTimeout(() => {
-					window.location.href = '/miperfil'
+					if(isLogged.data.type === 3) {
+						window.location.href = '/'
+					} else {
+						window.location.href = '/miperfil'
+					}
 				}, 1500);
 			} else {
 				alertRef.className = 'alert alert-danger'
