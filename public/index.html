@@ -8,6 +8,7 @@
 
 	<!-- Fonts and icons -->
 	<script src="assets/js/plugin/webfont/webfont.min.js"></script>
+	<script src="assets/js/funcs.js"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
@@ -16,8 +17,11 @@
 				sessionStorage.fonts = true;
 			}
 		});
+		const user = JSON.parse(localStorage.getItem('userInfo'))
+		if(user.type !== 3) {
+			window.location.href = "/miperfil"
+		}
 	</script>
-	<script src="assets/js/funcs.js"></script>
 
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -86,8 +90,6 @@
 									<li>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#">My Profile</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Account Setting</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#" onclick="logout()">Logout</a>
 									</li>

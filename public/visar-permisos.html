@@ -16,6 +16,10 @@
           sessionStorage.fonts = true;
         }
       });
+      const user = JSON.parse(localStorage.getItem('userInfo'))
+      if(user.type === 1) {
+        window.location.href = "/miperfil"
+      }
     </script>
     <script src="assets/js/funcs.js"></script>
     <!-- CSS Files -->
