@@ -1079,7 +1079,7 @@
 							const {solicitud, permiso, from, to, reemplazante} = certSols.data[i]
 							if(loggedUser.id === solicitud.user.id) {
 								table.row.add([
-									new Date(solicitud.fechaCreacion + santiagoOffset).toLocaleString().split(' ')[0],
+									new Date(solicitud.fechaCreacion).toLocaleString().split(' ')[0],
 									new Date(from + santiagoOffset).toLocaleString().split(' ')[0],
 									new Date(to + santiagoOffset).toLocaleString().split(' ')[0],
 									parseInt((to - from)/(1000*60*60*24), 10),
@@ -1106,33 +1106,23 @@
 					status: 1,
 					type: 1,
 					iduser: loggedUser.id,
-					fechaCreacion: new Date().getTime()
+					fechaCreacion: new Date().getTime(),
+					from,
+					to
 				}
-				const newSol = await renderer.request('/solicituds/add', solicitud, 'POST')
+				const newSol = await renderer.request('/permisoSolicituds/add', solicitud, 'POST')
 				if(newSol.err) {
 					alert(newSol.msg)
 				} else {
-					const solicitud = newSol.data
-					const pSol = {
-						idsolicitud: solicitud.id,
-						from,
-						to,
-						idpermiso: 1
-					}
-					const newPSol = await renderer.request('/permisoSolicituds/add', pSol, 'POST')
-					if(!newPSol.err) {
-						const {solicitud, from, to} = newPSol.data
-						table.row.add([
-							new Date(solicitud.fechaCreacion + santiagoOffset).toLocaleString().split(' ')[0],
-							new Date(from + santiagoOffset).toLocaleString().split(' ')[0],
-							new Date(to + santiagoOffset).toLocaleString().split(' ')[0],
-							parseInt((to - from)/(1000*60*60*24), 10),
-							statusDivs[solicitud.status]
-						]).draw('false')
-						$("#addRowModal").modal('toggle')
-					} else {
-						alert(newSol.msg)
-					}
+					const {solicitud, from, to} = newSol.data
+					table.row.add([
+						new Date(solicitud.fechaCreacion).toLocaleString().split(' ')[0],
+						new Date(from + santiagoOffset).toLocaleString().split(' ')[0],
+						new Date(to + santiagoOffset).toLocaleString().split(' ')[0],
+						parseInt((to - from)/(1000*60*60*24), 10),
+						statusDivs[solicitud.status]
+					]).draw('false')
+					$("#addRowModal").modal('toggle')
 				}
 			} else {
 				alert('error')

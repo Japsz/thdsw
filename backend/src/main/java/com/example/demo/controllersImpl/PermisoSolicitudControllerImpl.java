@@ -13,10 +13,12 @@ import com.example.demo.controller.PermisoSolicitudController;
 import com.example.demo.entities.Permiso;
 import com.example.demo.entities.PermisoSolicitud;
 import com.example.demo.entities.Solicitud;
+import com.example.demo.entities.User;
 import com.example.demo.requests.AddPermisoSolicitud;
 import com.example.demo.service.PermisoService;
 import com.example.demo.service.PermisoSolicitudService;
 import com.example.demo.service.SolicitudService;
+import com.example.demo.service.UserService;
 
 
 @RestController
@@ -27,6 +29,8 @@ public class PermisoSolicitudControllerImpl implements PermisoSolicitudControlle
 	SolicitudService solicitudService;
 	@Autowired
 	PermisoService permisoService;
+	@Autowired
+	UserService userService;
 
 
 	// http://localhost:8888/permisoSolicituds (GET)
@@ -51,14 +55,22 @@ public class PermisoSolicitudControllerImpl implements PermisoSolicitudControlle
 	@Override
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/permisoSolicituds/add", method = RequestMethod.POST, produces = "application/json")
-	public PermisoSolicitud addPermisoSolicitud(@RequestBody AddPermisoSolicitud request) {
+	public PermisoSolicitud addPermisoSolicitud(@RequestBody AddPermisoSolicitud solicitud) {
+
+		Solicitud newSol = new Solicitud();
 		PermisoSolicitud pSol = new PermisoSolicitud();
-		Optional<Solicitud> sol = solicitudService.findSolicitudById(request.idsolicitud);
-		Optional<Permiso> permiso = permisoService.findPermisoById(request.idpermiso);
+
+		newSol.setStatus(solicitud.status);
+		newSol.setType(solicitud.type);
+		newSol.setFechaCreacion(solicitud.fechaCreacion);
+		Optional<User> user = userService.findUserById(solicitud.iduser);
+		newSol.setUser(user.get());
+		Solicitud savedSol = solicitudService.saveSolicitud(newSol);
+		pSol.setSolicitud(savedSol);
+		Optional<Permiso> permiso = permisoService.findPermisoById(Integer.toUnsignedLong(1));
 		pSol.setPermiso(permiso.get());
-		pSol.setSolicitud(sol.get());
-		pSol.setFrom(request.from);
-		pSol.setTo(request.to);
+		pSol.setFrom(solicitud.from);
+		pSol.setTo(solicitud.to);
 		return permisoSolicitudService.savePermisoSolicitud(pSol);
 	}
 
