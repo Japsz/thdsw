@@ -454,7 +454,7 @@
 												<div class="col-md-12">
 													<div class="form-group form-group-default">
 														<label>Nombre</label>
-														<input type="text" class="form-control" name="name" placeholder="" value="">
+														<input type="text" class="form-control" name="name" placeholder="" id="name" value="">
 													</div>
 												</div>
 
@@ -538,7 +538,7 @@
 												<div class="col-md-12">
 													<div class="form-group form-group-default">
 														<label>Cargo</label>
-														<input type="text" class="form-control" name="name" placeholder="Ej. Desarrollador" value="">
+														<input type="text" class="form-control" name="name" placeholder="Ej. Desarrollador" id="cargo" value="">
 													</div>
 												</div>
 
@@ -547,13 +547,13 @@
 												<div class="col-md-6">
 													<div class="form-group form-group-default">
 														<label>Fecha Inicio Contrato</label>
-														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Seleccione fecha">
+														<input type="date" class="form-control" id="contrato_ini" name="datepicker" value="" placeholder="Seleccione fecha">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group form-group-default">
 														<label>Fecha Término Contrato</label>
-														<input type="text" class="form-control" id="datepicker" name="datepicker" value="" placeholder="Seleccione fecha">
+														<input type="date" class="form-control" id="contrato_fin" name="datepicker" value="" placeholder="Seleccione fecha">
 													</div>
 												</div>
 											</div>
@@ -561,17 +561,16 @@
 												<div class="col-md-6">
 													<div class="form-group form-group-default">
 														<label>Unidad</label>
-														<select class="form-control" id="">
-															<option>Administración</option>
-															<option>Informática</option>
-															<option>Comercial</option>
-														</select>
+														<select class="form-control" id="unidad">
+															<option value="admin" selected>Administración</option>
+															<option value="informatica">Informática</option>
+															<option value="marketing">Comercial</option>														</select>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group form-group-default">
 														<label>Tipo Contrato</label>
-														<select class="form-control" id="">
+														<select class="form-control" id="contratoType">
 															<option>Indefinido</option>
 															<option>Plazo fijo</option>
 															<option>Honorarios</option>
@@ -580,7 +579,7 @@
 												</div>
 											</div>
 											<div class="text-right mt-3 mb-3">
-												<button class="btn btn-success">Actualizar</button>
+												<button class="btn btn-success" onclick="saveEmpleado()">Actualizar</button>
 												<button class="btn btn-danger">Cancelar</button>
 											</div>
 										</div>
@@ -1183,10 +1182,34 @@
 	<script src="assets/js/atlantis.min.js"></script>
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
 	<script src="assets/js/setting-demo.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="./view-engine/renderer.js"></script>
+	<script src="assets/js/profile-setter.js"></script>
 	<script>
-		$('#datepicker').datetimepicker({
-			format: 'MM/DD/YYYY',
-		});
+		let user = JSON.parse(localStorage.getItem('userInfo'))
+		const santiagoOffset = 4*60*60*1000
+		$(document).ready(() => {
+			document.getElementById('cargo').value = user.empleado.cargo
+			document.getElementById('unidad').value = user.empleado.unidad
+			document.getElementById('contratoType').value = user.empleado.contratoType
+			document.getElementById('contrato_ini').value = new Date(user.empleado.contratoIni + santiagoOffset).toLocaleString('en-CA').split(',')[0]
+			document.getElementById('contrato_fin').value = new Date(user.empleado.contratoFin + santiagoOffset).toLocaleString('en-CA').split(',')[0]
+
+		})
+		async function saveEmpleado() {
+			const cargo = document.getElementById('cargo').value
+			const unidad = document.getElementById('unidad').value
+			const contratoIni = new Date(document.getElementById('contrato_ini').value).getTime()
+			const contratoFin = new Date(document.getElementById('contrato_fin').value).getTime()
+			const contratoType = document.getElementById('contratoType').value
+			const newEmpleado = { ...user.empleado, cargo, unidad, contratoIni, contratoFin, contratoType }
+			const updEmpleado = await renderer.request('/empleados/update', newEmpleado, 'PATCH')
+			if(!updEmpleado.err) {
+				console.log(updEmpleado.data)
+				user.empleado = newEmpleado
+				localStorage.setItem('userInfo', JSON.stringify(user))
+			} else alert(updEmpleado.msg)
+		}
 	</script>
 </body>
 </html>

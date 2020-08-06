@@ -3,7 +3,9 @@ package com.example.demo.controllersImpl;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,8 +54,9 @@ public class EmpleadoControllerImpl implements EmpleadoController {
 
 	// http://localhost:8888/empleados/update (PATCH)
 	@Override
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/empleados/update", method = RequestMethod.PATCH, produces = "application/json")
-	public String updateEmpleado(Empleado empleadoNew) {
+	public String updateEmpleado(@RequestBody Empleado empleadoNew) {
 		return empleadoService.updateEmpleado(empleadoNew);
 	}
 
